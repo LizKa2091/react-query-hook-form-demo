@@ -11,7 +11,8 @@ export default function FormValidationExample() {
    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
 
    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      /* "handleSubmit" проводит валидацию инпутов перед вызовом onSubmit */
+      <form onSubmit={ handleSubmit(onSubmit) }>
          <input {...register("firstName", { required: true, maxLength: 20 })} />
          <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
          <input type="number" {...register("age", { min: 18, max: 99 })} />

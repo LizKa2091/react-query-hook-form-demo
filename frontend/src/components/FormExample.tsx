@@ -12,20 +12,21 @@ export default function FormExample() {
       watch,
       formState: { errors },
    } = useForm<Inputs>();
+
    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-   console.log(watch("example")) // watch input value by passing the name of it
+   console.log(watch("example")); // ставится наблюдение за input "example"
 
    return (
-      /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-      <form onSubmit={handleSubmit(onSubmit)}>
-         {/* register your input into the hook by invoking the "register" function */}
+      /* "handleSubmit" проводит валидацию инпутов перед вызовом onSubmit */
+      <form onSubmit={ handleSubmit(onSubmit) }>
+         {/* регистрация инпута в хуке посредством вызова функции "register". регистрируется как "example" */}
          <input defaultValue="test" {...register("example")} />
 
-         {/* include validation with required or other standard HTML validation rules */}
+         {/* валидация с required. больше валидаций см в FormValidationExample.tsx */}
          <input {...register("exampleRequired", { required: true })} />
-         
-         {/* errors will return when field validation fails  */}
+
+         {/* возврат ошибок в случае неуспешной валидации */}
          {errors.exampleRequired && <span>This field is required</span>}
          <input type="submit" />
       </form>
