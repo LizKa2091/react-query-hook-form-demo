@@ -5,6 +5,7 @@ import FormValidationExample from './components/FormValidationExample';
 import FormErrorHandlingExample from './components/FormErrorHandlingExample';
 
 import './App.css';
+import FormAuthValidation from './components/FormAuthValidation';
 
 const App: FC = () => {
    return (
@@ -17,6 +18,8 @@ const App: FC = () => {
          <FormValidationExample />
          <p>form with error handling example</p>
          <FormErrorHandlingExample />
+         <p>my auth form</p>
+         <FormAuthValidation />
       </>
    );
 };
