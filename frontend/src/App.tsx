@@ -6,6 +6,7 @@ import FormErrorHandlingExample from './components/FormErrorHandlingExample';
 
 import './App.css';
 import FormAuthValidation from './components/FormAuthValidation';
+import FromMultiSelect from './components/FromMultiSelect';
 
 const App: FC = () => {
    return (
@@ -20,6 +21,8 @@ const App: FC = () => {
          <FormErrorHandlingExample />
          <p>my auth form</p>
          <FormAuthValidation />
+         <p>my multiselect form</p>
+         <FromMultiSelect />
       </>
    );
 };
