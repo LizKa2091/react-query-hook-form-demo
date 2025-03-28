@@ -3,15 +3,18 @@ import FormExample from './components/FormExample';
 import FormSelectExample from './components/FormSelectExample';
 import FormValidationExample from './components/FormValidationExample';
 import FormErrorHandlingExample from './components/FormErrorHandlingExample';
-
-import './App.css';
 import FormAuthValidation from './components/FormAuthValidation';
 import FromMultiSelect from './components/FromMultiSelect';
+import './App.css';
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const App: FC = () => {
    return (
       <>
-         <p>form example</p>
+         {/* <p>form example</p>
          <FormExample />
          <p>form with select example</p>
          <FormSelectExample />
@@ -22,7 +25,11 @@ const App: FC = () => {
          <p>my auth form</p>
          <FormAuthValidation />
          <p>my multiselect form</p>
-         <FromMultiSelect />
+         <FromMultiSelect /> */}
+         <QueryClientProvider client={queryClient}>
+
+         </QueryClientProvider>
+
       </>
    );
 };
