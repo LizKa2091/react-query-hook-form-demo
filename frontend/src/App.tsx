@@ -8,6 +8,7 @@ import FromMultiSelect from './components/FromMultiSelect';
 import './App.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
+import FormFilterProducts from './components/FormFilterProducts';
 
 const queryClient = new QueryClient();
 
@@ -26,10 +27,10 @@ const App: FC = () => {
          <FormAuthValidation />
          <p>my multiselect form</p>
          <FromMultiSelect /> */}
-         <QueryClientProvider client={queryClient}>
+         {/* <QueryClientProvider client={queryClient}>
 
-         </QueryClientProvider>
-
+         </QueryClientProvider> */}
+         <FormFilterProducts />
       </>
    );
 };
