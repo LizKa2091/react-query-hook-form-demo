@@ -9,6 +9,7 @@ import './App.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import FormFilterProducts from './components/FormFilterProducts';
+import FormOrderPizza from './components/FormOrderPizza';
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,8 @@ const App: FC = () => {
          {/* <QueryClientProvider client={queryClient}>
 
          </QueryClientProvider> */}
-         <FormFilterProducts />
+         {/* <FormFilterProducts /> */}
+         <FormOrderPizza />
       </>
    );
 };
