@@ -9,8 +9,10 @@ import './App.css';
 import axios from 'axios';
 
 import FormFilterProducts from './components/FormFilterProducts';
-import { useQuery } from 'react-query';
+import { useIsFetching, useIsMutating, useMutation, useQuery, useQueryClient } from 'react-query';
 import { usePosts } from './components/usePosts';
+import { usePost } from './components/usePostById';
+import { IPost } from './post.types';
 
 //сделать так, чтобы запрос не производился, когда нет id
 const isAuth = true;
@@ -19,6 +21,8 @@ const isAuth = true;
 //    return axios.get('https://jsonplaceholder.typicode.com/posts');
 // }
 
+// useQuery используется для GET запросов, кэширует данные
+// useMutation используется для обновления данных (все запросы кроме GET), не кэширует данные
 const App: FC = () => {
    // //расстановка постоянно меняется в разных версиях
    // const { data, isLoading, isSuccess, isError } = useQuery({
@@ -37,7 +41,25 @@ const App: FC = () => {
    //    if (isError) console.log('ошибка')
    // }, [isError]);
 
+   const { post } = usePost(1);
    const { data, isLoading } = usePosts(isAuth);
+
+   const queryClient = useQueryClient();
+
+   console.log(post);
+
+   const { mutate } = useMutation({
+      mutationKey: ['add post'],
+      mutationFn: async (newPost: Omit<IPost, 'id'>) => axios.post('https://jsonplaceholder.typicode.com/posts', newPost),
+      // если в mutationFn больше 1 аргумента, то уже нужен объект
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ['posts'] })
+      }
+   });
+
+   // можем глобавльно устанавливать загрузку к любому запросу
+   // const isFetching = useIsFetching();
+   // const isMutating = useIsMutating();
 
    return (
       <>
@@ -63,6 +85,12 @@ const App: FC = () => {
                {post.title}
             </div>
          )) : 'Not found'}
+         <button onClick={ () => queryClient.invalidateQueries({queryKey: ['posts']}) }>invalidate posts</button>
+         <button onClick={ () => mutate({
+            body: 'New body',
+            title: 'New title',
+            userId: 1
+         })}>Create</button>
       </>
    );
 };
