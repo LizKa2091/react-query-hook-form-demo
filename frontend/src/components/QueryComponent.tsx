@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 
 const fetchData = async () => {
    const response = await fetch('/api/data');
