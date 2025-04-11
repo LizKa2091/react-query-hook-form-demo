@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import FormExample from './components/FormExample';
 import FormSelectExample from './components/FormSelectExample';
 import FormValidationExample from './components/FormValidationExample';
@@ -6,13 +6,39 @@ import FormErrorHandlingExample from './components/FormErrorHandlingExample';
 import FormAuthValidation from './components/FormAuthValidation';
 import FromMultiSelect from './components/FromMultiSelect';
 import './App.css';
+import axios from 'axios';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
 import FormFilterProducts from './components/FormFilterProducts';
+import { useQuery } from 'react-query';
+import { usePosts } from './components/usePosts';
 
-const queryClient = new QueryClient();
+//сделать так, чтобы запрос не производился, когда нет id
+const isAuth = true;
+
+// const getData = async () => {
+//    return axios.get('https://jsonplaceholder.typicode.com/posts');
+// }
 
 const App: FC = () => {
+   // //расстановка постоянно меняется в разных версиях
+   // const { data, isLoading, isSuccess, isError } = useQuery({
+   //    queryKey: ['posts'], //по этому же ключу будет храниться в кэше
+   //    queryFn: getData,
+   //    select: (data) => data.data,
+   //    enabled: isAuth, // запрос делается только тогда, когда isAuth true
+
+   // });
+
+   // useEffect(() => {
+   //    if (isSuccess) console.log('успех')
+   // }, [isSuccess, data]);
+
+   // useEffect(() => {
+   //    if (isError) console.log('ошибка')
+   // }, [isError]);
+
+   const { data, isLoading } = usePosts(isAuth);
+
    return (
       <>
          {/* <p>form example</p>
@@ -30,7 +56,13 @@ const App: FC = () => {
          {/* <QueryClientProvider client={queryClient}>
 
          </QueryClientProvider> */}
-         <FormFilterProducts />
+         {/* <FormFilterProducts /> */}
+         {/* <QueryTutorial /> */}
+         {isLoading ? 'Loading' : data?.length ? data.map((post: any) => (
+            <div key={post.id}>
+               {post.title}
+            </div>
+         )) : 'Not found'}
       </>
    );
 };
