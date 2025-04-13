@@ -13,6 +13,7 @@ import { useIsFetching, useIsMutating, useMutation, useQuery, useQueryClient } f
 import { usePosts } from './components/usePosts';
 import { usePost } from './components/usePostById';
 import { IPost } from './post.types';
+import ToDoQuery from './components/ToDoQuery';
 
 //сделать так, чтобы запрос не производился, когда нет id
 const isAuth = true;
@@ -63,6 +64,7 @@ const App: FC = () => {
 
    return (
       <>
+         <ToDoQuery />
          {/* <p>form example</p>
          <FormExample />
          <p>form with select example</p>
