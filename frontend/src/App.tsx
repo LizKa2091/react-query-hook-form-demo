@@ -14,6 +14,7 @@ import { usePosts } from './components/usePosts';
 import { usePost } from './components/usePostById';
 import { IPost } from './post.types';
 import ToDoQuery from './components/ToDoQuery';
+import QueryForm1 from './components/QueryForm1';
 
 //сделать так, чтобы запрос не производился, когда нет id
 const isAuth = true;
@@ -42,21 +43,21 @@ const App: FC = () => {
    //    if (isError) console.log('ошибка')
    // }, [isError]);
 
-   const { post } = usePost(1);
-   const { data, isLoading } = usePosts(isAuth);
+   // const { post } = usePost(1);
+   // const { data, isLoading } = usePosts(isAuth);
 
-   const queryClient = useQueryClient();
+   // const queryClient = useQueryClient();
 
-   console.log(post);
+   // console.log(post);
 
-   const { mutate } = useMutation({
-      mutationKey: ['add post'],
-      mutationFn: async (newPost: Omit<IPost, 'id'>) => axios.post('https://jsonplaceholder.typicode.com/posts', newPost),
-      // если в mutationFn больше 1 аргумента, то уже нужен объект
-      onSuccess: () => {
-         queryClient.invalidateQueries({ queryKey: ['posts'] })
-      }
-   });
+   // const { mutate } = useMutation({
+   //    mutationKey: ['add post'],
+   //    mutationFn: async (newPost: Omit<IPost, 'id'>) => axios.post('https://jsonplaceholder.typicode.com/posts', newPost),
+   //    // если в mutationFn больше 1 аргумента, то уже нужен объект
+   //    onSuccess: () => {
+   //       queryClient.invalidateQueries({ queryKey: ['posts'] })
+   //    }
+   // });
 
    // можем глобавльно устанавливать загрузку к любому запросу
    // const isFetching = useIsFetching();
@@ -64,7 +65,7 @@ const App: FC = () => {
 
    return (
       <>
-         <ToDoQuery />
+         {/* <ToDoQuery /> */}
          {/* <p>form example</p>
          <FormExample />
          <p>form with select example</p>
@@ -82,7 +83,7 @@ const App: FC = () => {
          </QueryClientProvider> */}
          {/* <FormFilterProducts /> */}
          {/* <QueryTutorial /> */}
-         {isLoading ? 'Loading' : data?.length ? data.map((post: any) => (
+         {/* {isLoading ? 'Loading' : data?.length ? data.map((post: any) => (
             <div key={post.id}>
                {post.title}
             </div>
@@ -92,7 +93,8 @@ const App: FC = () => {
             body: 'New body',
             title: 'New title',
             userId: 1
-         })}>Create</button>
+         })}>Create</button> */}
+         <QueryForm1 />
       </>
    );
 };
