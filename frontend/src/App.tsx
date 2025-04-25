@@ -15,11 +15,11 @@ import { usePost } from './components/usePostById';
 import { IPost } from './post.types';
 import ToDoQuery from './components/ToDoQuery';
 import QueryForm1 from './components/QueryForm1';
-import { AuthProvider } from './AuthContext';
-import { useAuth } from './AuthContext';
-import LoginForm from './LoginForm';
-import BookList from './BookList';
-import AddBookForm from './AddBookForm';
+import { AuthProvider } from '../src/components/library/AuthContext';
+import { useAuth } from '../src/components/library/AuthContext';
+import LoginForm from '../src/components/library/LoginForm';
+import { BookList } from '../src/components/library/BookList';
+import { AddBookForm } from '../src/components/library/AddBookForm';
 
 //сделать так, чтобы запрос не производился, когда нет id
 const isAuth = true;
@@ -71,7 +71,7 @@ const App: FC = () => {
    const { isAuthed, logout } = useAuth();
 
    if (!isAuthed) {
-      return <LoginForm />;
+      return <LoginForm username={''} password={''} />;
    }
 
    return (
