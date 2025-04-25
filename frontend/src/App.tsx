@@ -15,6 +15,11 @@ import { usePost } from './components/usePostById';
 import { IPost } from './post.types';
 import ToDoQuery from './components/ToDoQuery';
 import QueryForm1 from './components/QueryForm1';
+import { AuthProvider } from './AuthContext';
+import { useAuth } from './AuthContext';
+import LoginForm from './LoginForm';
+import BookList from './BookList';
+import AddBookForm from './AddBookForm';
 
 //сделать так, чтобы запрос не производился, когда нет id
 const isAuth = true;
@@ -63,6 +68,22 @@ const App: FC = () => {
    // const isFetching = useIsFetching();
    // const isMutating = useIsMutating();
 
+   const { isAuthed, logout } = useAuth();
+
+   if (!isAuthed) {
+      return <LoginForm />;
+   }
+
+   return (
+      <AuthProvider>
+         <div>
+            <button onClick={logout}>Выйти</button>
+            <AddBookForm />
+            <BookList />
+         </div>
+      </AuthProvider>
+   );
+
    return (
       <>
          {/* <ToDoQuery /> */}
@@ -94,7 +115,7 @@ const App: FC = () => {
             title: 'New title',
             userId: 1
          })}>Create</button> */}
-         <QueryForm1 />
+         {/* <QueryForm1 /> */}
       </>
    );
 };
