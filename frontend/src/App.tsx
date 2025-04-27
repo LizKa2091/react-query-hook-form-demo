@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import './App.css';
-import Pokedex from './components/pokedex/Pokedex';
+import Starwars from './components/starwars/Starwars';
 
 const App: FC = () => {
    return (
-      <Pokedex />
+      <Starwars />
    );
 };
 
