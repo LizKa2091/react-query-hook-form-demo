@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { IEntity } from "../../starwars.types";
+import { IEntity } from "../../types/starwars.types";
 
 interface IResponse {
    results: IEntity[];

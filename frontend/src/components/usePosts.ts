@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { IPost } from "../post.types";
+import { IPost } from "../types/post.types";
 
 const getData = async () => {
    return axios.get<IPost[]>('https://jsonplaceholder.typicode.com/posts');
