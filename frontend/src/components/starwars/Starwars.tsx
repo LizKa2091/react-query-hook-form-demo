@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useEntities, useEntityById } from './useStarwars';
-import { IEntity } from '../../starwars.types';
+import { IEntity } from '../../types/starwars.types';
 
 const Starwars: FC = () => {
    const [selectedId, setSelectedId] = useState<number | null>(null);

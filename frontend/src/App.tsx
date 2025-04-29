@@ -1,10 +1,17 @@
 import React, { FC } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import './App.css';
-import Starwars from './components/starwars/Starwars';
+import Marvel from './components/marvel/Marvel';
+
+const queryClient = new QueryClient();
 
 const App: FC = () => {
    return (
-      <Starwars />
+      <QueryClientProvider client={queryClient}>
+         <Marvel />
+         {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+      </QueryClientProvider>
    );
 };
 
